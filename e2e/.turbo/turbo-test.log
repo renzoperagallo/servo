@@ -1,0 +1,12 @@
+
+> @servo/e2e@1.0.0 test
+> playwright test
+
+sh: línea 1: playwright: orden no encontrada
+npm error Lifecycle script `test` failed with error:
+npm error code 127
+npm error path /home/rpd/Documentos/Proyectos/servo/e2e
+npm error workspace @servo/e2e@1.0.0
+npm error location /home/rpd/Documentos/Proyectos/servo/e2e
+npm error command failed
+npm error command sh -c playwright test
