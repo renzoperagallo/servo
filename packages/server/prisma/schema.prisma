@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  cycleStartDay Int      @default(1)
+  cycleEndDay   Int      @default(31)
+  createdAt     DateTime @default(now())
+  expenseItems  ExpenseItem[]
+  expenses      Expense[]
+  reports       Report[]
+}
+
+model ExpenseItem {
+  id             String    @id @default(cuid())
+  name           String
+  monthlyBudget  Float
+  userId         String
+  user           User      @relation(fields: [userId], references: [id])
+  expenses       Expense[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model Expense {
+  id            String      @id @default(cuid())
+  amount        Float
+  description   String?
+  date          DateTime    @default(now())
+  expenseItemId String
+  expenseItem   ExpenseItem @relation(fields: [expenseItemId], references: [id])
+  userId        String
+  user          User        @relation(fields: [userId], references: [id])
+  createdAt     DateTime    @default(now())
+}
+
+model Report {
+  id        String   @id @default(cuid())
+  month     Int
+  year      Int
+  data      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([month, year, userId])
+}
