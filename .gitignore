@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.env
+.env.local
+*.db
+*.db-journal
+coverage/
+.vite/
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# Android
+packages/client/android/.gradle/
+packages/client/android/build/
+packages/client/android/app/build/
+packages/client/android/capacitor-cordova-android-plugins/build/
+packages/client/android/.idea/
+
+# APK (se entrega via releases)
+*.apk
+
+# Temp
+start.sh
